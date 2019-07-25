@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group 'com.toxicbakery.app'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+publishing {
+    repositories {
+        maven {
+            url = uri("https://maven.pkg.github.com/toxicbakery")
+            credentials {
+                username = ghUsername
+                password = ghPassword
+            }
+        }
+    }
+    publications {
+        mavenJava(MavenPublication) {
+            pom {
+                name = "registry-example"
+                description = "Github registry example"
+                url = "https://github.com/toxicbakery/registry-example"
+                licenses {
+                    license {
+                        name = "The Apache Software License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+                scm {
+                    connection = "scm:git:https://github.com/toxicbakery/registry-example.git"
+                    developerConnection = "scm:git:https://github.com/toxicbakery/registry-example.git"
+                    url = "https://github.com/toxicbakery/registry-example"
+                }
+            }
+            from components.java
+        }
+    }
+}
