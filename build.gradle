@@ -19,7 +19,7 @@ dependencies {
 publishing {
     repositories {
         maven {
-            url = uri("https://maven.pkg.github.com/toxicbakery")
+            url = uri("https://maven.pkg.github.com/toxicbakery/registry-example")
             credentials {
                 username = ghUsername
                 password = ghPassword
